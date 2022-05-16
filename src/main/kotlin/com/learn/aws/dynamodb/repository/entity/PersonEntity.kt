@@ -10,7 +10,7 @@ import java.util.*
 data class PersonEntity(
 
     @DynamoDBHashKey(attributeName = TENANT_ID)
-    val tenantId: UUID,
+    var tenantId: UUID,
 
     @DynamoDBAttribute(attributeName = "documento_originacao")
     val originationDocumentEntity: OriginationDocumentEntity

@@ -4,6 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper
 import com.learn.aws.dynamodb.repository.IPersonRepository
 import com.learn.aws.dynamodb.repository.config.IDynamoDBConfig
 import com.learn.aws.dynamodb.repository.entity.PersonEntity
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Repository
 
 @Repository

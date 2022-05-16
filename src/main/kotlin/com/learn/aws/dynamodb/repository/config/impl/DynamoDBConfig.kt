@@ -1,9 +1,7 @@
 package com.learn.aws.dynamodb.repository.config.impl
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider
-import com.amazonaws.auth.AnonymousAWSCredentials
 import com.amazonaws.auth.BasicAWSCredentials
-import com.amazonaws.auth.profile.ProfileCredentialsProvider
 import com.amazonaws.client.builder.AwsClientBuilder
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "########### Creating table ###########"
-aws $AWS_ENDPOINT \
+aws --endpoint-url=http://dynamodb-local:8000 \
     dynamodb create-table \
       --table-name tbeq3171_pess_dynamo \
       --attribute-definitions \
@@ -12,5 +12,5 @@ aws $AWS_ENDPOINT \
         ReadCapacityUnits=5,WriteCapacityUnits=5 \
 
 echo "########### Describing a table ###########"
-aws $AWS_ENDPOINT \
+aws --endpoint-url=http://dynamodb-local:8000 \
     dynamodb describe-table --table-name tbeq3171_pess_dynamo --output table

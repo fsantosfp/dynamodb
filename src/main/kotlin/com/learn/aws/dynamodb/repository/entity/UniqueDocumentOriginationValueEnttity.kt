@@ -1,25 +1,23 @@
 package com.learn.aws.dynamodb.repository.entity
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped
+import com.amazonaws.services.dynamodbv2.datamodeling.*
+import com.learn.aws.dynamodb.repository.converters.LocalDateConverter
 import java.time.LocalDateTime
 
 @DynamoDBDocument
 data class UniqueDocumentOriginationValueEnttity(
 
     @DynamoDBAttribute(attributeName = "tipo")
-    val originationDocumentType: Long,
+    var originationDocumentType: Long ?= null,
 
     @DynamoDBAttribute(attributeName = "numero")
-    val originationDocumentNumber: String,
+    var originationDocumentNumber: String ?= null,
 
     @DynamoDBAttribute(attributeName = "pais")
-    val originationDocumentCountry: String,
+    var originationDocumentCountry: String ?= null,
 
-    @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.S)
+    @DynamoDBTypeConverted(converter = LocalDateConverter::class)
     @DynamoDBAttribute(attributeName = "data_criacao")
-    val originationDocumentCreateDate: LocalDateTime
+    var originationDocumentCreateDate: LocalDateTime ?= null
 
     )

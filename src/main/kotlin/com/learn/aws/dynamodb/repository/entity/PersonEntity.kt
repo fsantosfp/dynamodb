@@ -1,8 +1,6 @@
 package com.learn.aws.dynamodb.repository.entity
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable
+import com.amazonaws.services.dynamodbv2.datamodeling.*
 import com.learn.aws.dynamodb.repository.constants.PersonTableConstants.Companion.TENANT_ID
 import java.util.*
 
@@ -10,8 +8,8 @@ import java.util.*
 data class PersonEntity(
 
     @DynamoDBHashKey(attributeName = TENANT_ID)
-    var tenantId: UUID,
+    var tenantId: UUID ?= null,
 
     @DynamoDBAttribute(attributeName = "documento_originacao")
-    val originationDocumentEntity: OriginationDocumentEntity
+    var originationDocumentEntity: OriginationDocumentEntity ?= null
 )

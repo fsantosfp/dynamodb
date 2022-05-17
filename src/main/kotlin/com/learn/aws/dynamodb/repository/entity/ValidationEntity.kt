@@ -3,6 +3,7 @@ package com.learn.aws.dynamodb.repository.entity
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped
 import com.learn.aws.dynamodb.repository.constants.CompletenessTableConstants.Companion.COMPLEMENTARY_INFORMATION
 import com.learn.aws.dynamodb.repository.constants.CompletenessTableConstants.Companion.COMPLETENESS_CONFIRMATION_METHOD
@@ -10,6 +11,8 @@ import com.learn.aws.dynamodb.repository.constants.CompletenessTableConstants.Co
 import com.learn.aws.dynamodb.repository.constants.CompletenessTableConstants.Companion.DATE_TIME_VALIDATION_SOURCE
 import com.learn.aws.dynamodb.repository.constants.CompletenessTableConstants.Companion.JOURNEY_ID
 import com.learn.aws.dynamodb.repository.constants.CompletenessTableConstants.Companion.LEVEL_RELIABILITY_COMPLETENESS
+import com.learn.aws.dynamodb.repository.converters.LocalDateConverter
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
@@ -18,33 +21,28 @@ import java.util.*
 data class ValidationEntity(
 
     @DynamoDBAttribute(attributeName = JOURNEY_ID)
-    val journeyID: UUID,
+    var journeyID: UUID ?= null,
 
     @DynamoDBAttribute(attributeName = LEVEL_RELIABILITY_COMPLETENESS)
-    val levelCompleteness: Long,
+    var levelCompleteness: Long ?= null,
 
     @DynamoDBAttribute(attributeName = COMPLETENESS_CONFIRMATION_SOURCE)
-    val confirmationSource: Long,
+    var confirmationSource: Long ?= null,
 
     @DynamoDBAttribute(attributeName = COMPLETENESS_CONFIRMATION_METHOD)
-    val confirmationMode: Long,
+    var confirmationMode: Long ?= null,
 
     @DynamoDBAttribute(attributeName = "is_valida_completude")
-    val isValidatedCompleteness: Boolean,
+    var isValidatedCompleteness: Boolean = false,
 
     @DynamoDBAttribute(attributeName = "is_critico")
-    val isCritical: Boolean,
+    var isCritical: Boolean = false,
 
     @DynamoDBAttribute(attributeName = COMPLEMENTARY_INFORMATION )
-    val information: String,
+    var information: String ?= null ,
 
-    @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.S)
+    @DynamoDBTypeConverted(converter = LocalDateConverter::class)
     @DynamoDBAttribute(attributeName = DATE_TIME_VALIDATION_SOURCE )
-    val sourceDataValidation: LocalDateTime,
-
-
-
-
-
+    var sourceDataValidation: LocalDateTime ?= null
 
     )

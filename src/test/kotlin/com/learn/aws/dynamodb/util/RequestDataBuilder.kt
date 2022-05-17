@@ -14,7 +14,7 @@ class RequestDataBuilder {
 
             return  PersonEntity(
 
-                tenantId = UUID.fromString("1a3473dd-1b24-4302-a02c-60a59c7ddcab"),
+                tenantId = UUID.fromString("fd025f94-27ed-4e26-a29d-ec20a78ef846"),
                 originationDocumentEntity = newOriginationDocumentEntity()
 
             )

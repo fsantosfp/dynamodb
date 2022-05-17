@@ -7,10 +7,10 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument
 data class OriginationDocumentEntity(
 
     @DynamoDBAttribute(attributeName = "valor_cadastral")
-    val uniqueValue: UniqueDocumentOriginationValueEnttity,
+    var uniqueValue: UniqueDocumentOriginationValueEnttity ?= null,
 
     @DynamoDBAttribute(attributeName = "validacoes")
-    val validations: List<ValidationEntity>
+    var validations: List<ValidationEntity> ?= null
 
 )
 

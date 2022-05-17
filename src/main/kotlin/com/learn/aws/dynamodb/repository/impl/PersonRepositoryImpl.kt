@@ -4,7 +4,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper
 import com.learn.aws.dynamodb.repository.IPersonRepository
 import com.learn.aws.dynamodb.repository.config.IDynamoDBConfig
 import com.learn.aws.dynamodb.repository.entity.PersonEntity
-import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Repository
 import java.util.*
 
@@ -17,8 +16,14 @@ class PersonRepositoryImpl(private val dynamoDBConfig: IDynamoDBConfig): IPerson
         val dynamoDBMapper = DynamoDBMapper(amazonDynamoDBClient)
         dynamoDBMapper.save(personEntity)
 
-        personEntity.tenantId = UUID.fromString("b012d024-94d8-4660-b5ed-78fc7b6327ce")
-
         return personEntity
+    }
+
+    override fun getById(tenantId: UUID): PersonEntity {
+        val amazonDynamoDBClient = dynamoDBConfig.dynamoDBClient()
+        val dynamoDBMapper = DynamoDBMapper(amazonDynamoDBClient)
+        val result = dynamoDBMapper.load(PersonEntity::class.java, tenantId)
+
+        return result
     }
 }
